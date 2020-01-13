@@ -1,0 +1,15 @@
+#!/bin/bash
+#runs midnight commander.
+# Copyright © 2019 Amibian.net
+# All rights reserved
+
+# start program
+sudo mc
+
+# change to home directory
+cd ~
+
+#clear screen on exit
+clear
+
+menu
