@@ -1,0 +1,15 @@
+    Type a number and press enter.
+    To show this menu again, type menu and press enter.
+
+    1.  Amiga - the selected Amiga emulator is Amiberry Master
+    2.  Amibian Desktop
+    3.  C64
+    4.  ScummVM (point and click adventurte games)
+    5.  Zx Spectrum
+    6.  File manager (Midnight Commander)
+    7.  System Settings
+    8.  Help
+    9.  REBOOT
+    0.  SHUTDOWN SAFELY
+ _________________________________________________________________
+
