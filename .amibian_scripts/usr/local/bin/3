@@ -1,0 +1,18 @@
+#!/bin/bash
+#runs c64 emulator.
+# Copyright © 2019 Amibian.net
+# All rights reserved
+
+# change to working directory
+cd /home/amibian/.amibian_scripts
+
+# start program
+./run-c64.sh
+
+# change to home directory
+cd ~
+
+#clear screen on exit
+clear
+
+menu
