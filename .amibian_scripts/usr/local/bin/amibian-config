@@ -1,0 +1,6 @@
+#!/bin/bash
+#opens amibian-config.
+# Copyright © 2019 Amibian.net
+# All rights reserved
+
+sudo raspi-config
