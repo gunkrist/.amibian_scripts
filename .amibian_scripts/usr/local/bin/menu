@@ -1,0 +1,11 @@
+#!/bin/bash
+#displays the menu.
+# Copyright © 2019 Amibian.net
+# All rights reserved
+
+clear
+
+# display the menu
+cd /home/amibian/.amibian_scripts
+./show_menu.sh
+cd ~
