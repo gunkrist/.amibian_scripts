@@ -1,0 +1,7 @@
+#!/bin/bash
+#reboot.
+# Copyright © 2019 Amibian.net
+# All rights reserved
+
+setterm -cursor off
+sudo reboot
