@@ -1,0 +1,9 @@
+#!/bin/bash
+#shows cpu temp
+# Copyright © 2019 Amibian.net
+# All rights reserved
+
+
+
+# start program
+vcgencmd measure_temp
