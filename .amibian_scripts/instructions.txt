@@ -22,19 +22,19 @@
  _________________________________________________________________
 
  1. system setup / raspi-config
- 	Exit the emulator you have running, if you are running one.
- if you are in the CLI, press '7' and enter, you can also open the
- same settings program by typing 'sudo raspi-config',
- 'amibian-config' or 'settings'. If you are in the Amibian desktop,
- open the applications menu (the amibian logo in the bottom 
- left corner). From there you open the 'help' section and there you
- press 'system settings'
+ 	Exit the emulator you have running, if you are running 
+   one. If you are in the CLI, press '7' and enter, you can also 
+   open the same settings program by typing 'sudo raspi-config', 
+   'amibian-config' or 'settings'. If you are in the Amibian 
+   desktop, open the applications menu (the amibian logo in the 
+   bottom left corner). From there you open the 'help' section and 
+   there you press 'system settings'
  
- You can do most of your setup in this configuration tool.
- Select how Amibian will boot. setup wifi. setup ssh, 
- setup keyboard.
+   You can do most of your setup in this configuration tool.
+   Select how Amibian will boot. setup wifi. setup ssh, 
+   setup keyboard.
  
- Some of those can also be done from the Amibian Desktop.
+   Some of those can also be done from the Amibian Desktop.
  
  2. Amibian Desktop.
     	Amibian desktop is a lxde desktop. you can use it as you
