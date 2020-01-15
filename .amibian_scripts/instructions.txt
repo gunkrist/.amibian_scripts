@@ -21,7 +21,7 @@
 	                www.aminet.net
  _________________________________________________________________
 
- 1. system setup
+ 1. system setup / raspi-config
  	Exit the emulator you have running, if you are running one.
  if you are in the CLI, press '7' and enter, you can also open the
  same settings program by typing 'sudo raspi-config',
@@ -30,8 +30,23 @@
  left corner). From there you open the 'help' section and there you
  press 'system settings'
  
+ You can do most of your setup in this configuration tool.
+ Select how Amibian will boot. setup wifi. setup ssh, 
+ setup keyboard.
  
-
+ Some of those can also be done from the Amibian Desktop.
+ 
+ 2. Amibian Desktop.
+    	Amibian desktop is a lxde desktop. you can use it as you
+   would any other desktop. there are some useful apps 
+   pre-installed and shortcuts to them are found in the bottom
+   toolbar. Shortcuts to emulators can be found in a hidden toolbar
+   on the right side of the screen, to see that toolbar, move your
+   mouse cursor all the way to the right, middle screen and it will
+   appear.
+   
+  
+	   
 
 
 
