@@ -90,13 +90,8 @@
     can use the Amibian desktop.
     
     to start midnight commander file manager from cli, press '6'
-    end enter
-   
-   
-  
-	   
-
-
+    end enter. This way midnight commander is started with sudo
+    privileges. Navigate 
 
 
 
