@@ -31,19 +31,67 @@
    there you press 'system settings'
  
    You can do most of your setup in this configuration tool.
-   Select how Amibian will boot. setup wifi. setup ssh, 
-   setup keyboard.
- 
+   Select how Amibian will boot. setup wifi. setup ssh, setup 
+   keyboard.
+
+   You use the arrow keys on your keyboard to navigate through the
+   options, enter to select, esc to go back.
+
    Some of those can also be done from the Amibian Desktop.
+ 
+   Please use this tool to update your system. using the standard
+   apt-get update and upgrade may break the system. 
  
  2. Amibian Desktop.
     	Amibian desktop is a lxde desktop. you can use it as you
-   would any other desktop. there are some useful apps 
-   pre-installed and shortcuts to them are found in the bottom
-   toolbar. Shortcuts to emulators can be found in a hidden toolbar
-   on the right side of the screen, to see that toolbar, move your
-   mouse cursor all the way to the right, middle screen and it will
-   appear.
+    would any other desktop. there are some useful apps 
+    pre-installed and shortcuts to them are found in the bottom
+    toolbar. Shortcuts to emulators can be found in a hidden toolbar
+    on the right side of the screen, to see that toolbar, move your
+    mouse cursor all the way to the right, middle screen and it will
+    appear.
+    ---
+    Changing screen resolution in Amibian Desktop.
+   
+   	open the applications menu, ->preferences->Display settings
+    Select the resolution and refresh rate you want, press apply to 
+    see if it works ok. if it works you can press save. if it doesn't
+    work the settings will be reverted after a few seconds.
+    ---
+    Change the keyboard layout.
+  
+   	because of a bug, changing the layout in the keyboard layout
+    handler will not be saved after a system restart. To set your 
+    layout and save it, you need to do it manually.
+   
+    open terminal and type
+   
+    'sudo nano /home/amibian/.config/lxpanel/LXDE-pi/panels/panel'
+   
+    Scroll down to line number 77, there you see a layout list.
+    First letters is the default keyboard layout, then comes the
+    secondary layouts, (you can change from default to a secondary
+    layout by pressing the flag in the top right corner.)
+    change these letters to the layouts you want. Google for the 
+    name for your preferrd layout if you are not sure.
+   
+    After you have made the changes you want, press 'ctrl + x' to
+    quit. You will be asked to confirm that you want to save the
+    changes you made. Press 'Y' for yes, 'N' for no. If you press
+    'Y' you are asked to confirm file name and location,
+    press enter to overwrite the file.
+   
+    Exit the terminal and reboot the system.
+  
+ 3. copying files.
+    
+    	To copy files from a flashdrive to your sd card/system
+    you can use midnight commander file manager from cli or you
+    can use the Amibian desktop.
+    
+    to start midnight commander file manager from cli, press '6'
+    end enter
+   
    
   
 	   
