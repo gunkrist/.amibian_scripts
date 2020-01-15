@@ -8,7 +8,7 @@ clear
 
 cd ~
 
-sudo mc
+sudo mc --nocolor
 
 #clear screen on exit
 clear
