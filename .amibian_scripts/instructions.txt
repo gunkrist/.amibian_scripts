@@ -91,12 +91,39 @@
     
     to start midnight commander file manager from cli, press '6'
     end enter. This way midnight commander is started with sudo
-    privileges. Navigate 
+    privileges. Navigate with arroe keys on your keyboard, use 
+    'TAB' to switch between windows and function keys for 
+    commands.
+    
+    In the Amibian desktop, just 'drag and drop'
+    
+    Amiga Kickstart roms are to be stored in
+    /home/amibian/Amiga/kickstarts/amibian 
 
+    Amiga floppies are to be stored in 
+    /home/amibian/Amiga/Floppys_ADF
 
-
-
-
+    Amiga hard drive files, HDF are to be stored in 
+    /home/amibian/Amiga/Hard-drives_HDF
+    
+    Amiga cd roms are to be stored in 
+    /home/amibian/Amiga/CDs_ISO
+    
+    other games and retro software shall be stored in
+    /home/amibian/Retro_software
+    in their respective sub folder. please add folder to suit 
+    your needs and adjust the paths in the emulators as needed.
+    
+  4. Boot directly into Amiga Workbench.
+  
+  	Make a config in the emulator gui and name it autostart
+     set it up to your needs and add the hdf you want to use or 
+     set the right mount paths to your workbench. make sure 
+     that your configuration works. then go back to the emulator
+     gui, go to the miscellaneous section and un-select 
+     'show GUI on startup' now whenever the emulator starts 
+     on boot your workbench will load. 
+    
 
 
 
