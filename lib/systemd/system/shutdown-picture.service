@@ -1,0 +1,12 @@
+[Unit]
+Description=Splash screen at shutdown
+DefaultDependencies=no
+After=local-halt.target
+ 
+[Service]
+ExecStart=/usr/bin/fbi --noverbose -t 1 -1 -a /home/amibian/.amibian_scripts/shutdown/shutdown01.jpg /home/amibian/.amibian_scripts/shutdown/shutdown02.jpg /home/amibian/.amibian_scripts/shutdown/shutdown03.jpg /home/amibian/.amibian_scripts/shutdown/shutdown04.jpg /home/amibian/.amibian_scripts/shutdown/shutdown05.jpg /home/amibian/.amibian_scripts/shutdown/shutdown02.jpg /home/amibian/.amibian_scripts/shutdown/shutdown02.jpg /home/amibian/.amibian_scripts/shutdown/shutdown02.jpg /home/amibian/.amibian_scripts/shutdown/shutdown06.jpg /home/amibian/.amibian_scripts/shutdown/shutdown07.jpg /home/amibian/.amibian_scripts/shutdown/shutdown08.jpg /home/amibian/.amibian_scripts/shutdown/shutdown09.jpg /home/amibian/.amibian_scripts/shutdown/shutdown10.jpg /home/amibian/.amibian_scripts/shutdown/shutdown11.jpg
+StandardInput=tty
+StandardOutput=tty
+ 
+[Install]
+WantedBy=halt.target poweroff.target
