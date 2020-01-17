@@ -1,6 +1,6 @@
 #!/bin/bash
 #runs scummvm virtual machine.
-# Copyright © 2019 Amibian.net
+# Copyright © 2020 Amibian.net
 # All rights reserved
 
 # clear the screen
