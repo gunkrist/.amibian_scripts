@@ -1,0 +1,9 @@
+#!/bin/bash
+#change volume
+# Copyright © 2020 Amibian.net
+# All rights reserved
+
+
+
+# start program
+sudo alsamixer
