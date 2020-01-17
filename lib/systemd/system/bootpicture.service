@@ -1,0 +1,12 @@
+[Unit]
+Description=Splash screen
+DefaultDependencies=no
+After=local-fs.target
+ 
+[Service]
+ExecStart=/usr/bin/fbi --noverbose -t 1 -1 -a /home/amibian/.amibian_scripts/boot-pic/starting01.jpg /home/amibian/.amibian_scripts/boot-pic/starting02.jpg /home/amibian/.amibian_scripts/boot-pic/starting03.jpg /home/amibian/.amibian_scripts/boot-pic/starting04.jpg /home/amibian/.amibian_scripts/boot-pic/starting05.jpg
+StandardInput=tty
+StandardOutput=tty
+ 
+[Install]
+WantedBy=local-fs.target
