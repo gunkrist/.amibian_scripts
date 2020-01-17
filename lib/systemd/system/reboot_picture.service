@@ -1,0 +1,12 @@
+[Unit]
+Description=Splash screen at reboot
+DefaultDependencies=no
+Before=reboot.target
+ 
+[Service]
+ExecStart=/usr/bin/fbi --noverbose -t 1 -1 -a /home/amibian/.amibian_scripts/reboot/reboot01.jpg /home/amibian/.amibian_scripts/reboot/reboot02.jpg /home/amibian/.amibian_scripts/reboot/reboot03.jpg /home/amibian/.amibian_scripts/reboot/reboot04.jpg /home/amibian/.amibian_scripts/reboot/reboot01.jpg /home/amibian/.amibian_scripts/reboot/reboot01.jpg /home/amibian/.amibian_scripts/reboot/reboot01.jpg /home/amibian/.amibian_scripts/reboot/reboot05.jpg /home/amibian/.amibian_scripts/reboot/reboot06.jpg /home/amibian/.amibian_scripts/reboot/reboot07.jpg /home/amibian/.amibian_scripts/reboot/reboot08.jpg /home/amibian/.amibian_scripts/reboot/reboot09.jpg /home/amibian/.amibian_scripts/reboot/reboot10.jpg
+StandardInput=tty
+StandardOutput=tty
+ 
+[Install]
+WantedBy=reboot.target
