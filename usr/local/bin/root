@@ -1,0 +1,13 @@
+#!/bin/bash
+#starts Amibian desktop
+# Copyright © 2020 Amibian.net
+# All rights reserved
+
+# start program
+sudo startx
+
+#clear screen
+clear
+
+#show menu when finished 
+menu
