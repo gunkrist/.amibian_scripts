@@ -1,6 +1,6 @@
 #!/bin/bash
 #runs an emulator or starts the amibian linux environment on boot.
-# Copyright © 2019 Amibian.net
+# Copyright © 2020 Amibian.net
 # All rights reserved
 
 # change to working directory
