@@ -1,6 +1,6 @@
 #!/bin/bash
 #runs kodi media player
-# Copyright © 2019 Amibian.net
+# Copyright © 2020 Amibian.net
 # All rights reserved
 
 # clear the screen
