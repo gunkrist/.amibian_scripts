@@ -1,6 +1,6 @@
 #!/bin/bash
 #runs fuse ZX Spectrum emulator.
-# Copyright © 2019 Amibian.net
+# Copyright © 2020 Amibian.net19
 # All rights reserved
 
 # clear the screen
