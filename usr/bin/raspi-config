@@ -1641,15 +1641,31 @@ fi
 }
 
 do_update_amibian() {
-  apt-get clean &&
-  apt-get -y update &&
-  apt-get -y upgrade &&
-  apt-get -y dist-upgrade &&
-  apt-get clean &&
-  apt-get -y autoremove &&
+wget -q --spider http://google.com
+
+if [ $? -eq 0 ]; then
+	  cd/ &&
+	  apt-get clean &&
+	  apt-get -y update &&
+	  apt-get -y upgrade &&
+	  apt-get -y dist-upgrade &&
+	  apt-get clean &&
+	  apt-get -y autoremove &&
+	   if [[ "$(git pull)" == "Already"* ]]; then
+	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
+	   else
+	    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	    cd ~
+	   fi
   printf "Sleeping 5 seconds before reloading raspi-config\n" &&
   sleep 5 &&
   exec raspi-config
+  
+  else
+    whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
+fi
+
+  ASK_TO_REBOOT=17
 }
 
 do_audio() {
