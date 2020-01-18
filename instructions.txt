@@ -114,6 +114,9 @@
     in their respective sub folder. please add folder to suit 
     your needs and adjust the paths in the emulators as needed.
     
+    copying files may change file permissions and ownership,
+    causing them to become write protected.
+    
   4. Boot directly into Amiga Workbench.
   
   	Make a config in the emulator gui and name it autostart
@@ -124,12 +127,5 @@
      'show GUI on startup' now whenever the emulator starts 
      on boot your workbench will load. 
     
-
-
-
-
-
-
-
 
 press 'Q' to exit
