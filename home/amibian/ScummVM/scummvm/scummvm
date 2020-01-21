@@ -1,0 +1,16 @@
+#!/bin/bash
+#starts scummvm
+# copyright Amibian.net
+# All rights reserved
+
+#change to the working directory
+cd /home/amibian/ScummVM/scummvm/
+
+# run program 
+scummvm
+
+# change back to home directory
+cd /
+
+# show menu
+menu
