@@ -1644,7 +1644,7 @@ do_update_amibian() {
 wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
-	  cd/ &&
+	  cd /home/amibian/.amibian_scripts &&
 	  apt-get clean &&
 	  apt-get -y update &&
 	  apt-get -y upgrade &&
@@ -1656,9 +1656,12 @@ if [ $? -eq 0 ]; then
 	   else
 	    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	    cd ~
-	    sudo cp -r /.amibian_scripts/usr/local/bin/ /usr/local/bin/
+	    sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/bin/
+	    sudo cp 
 	    sudo chmod a+x /usr/local/bin
-	    sudo chmod a+rx /.amibian_scripts	
+	    sudo chmod a+rwx /home/amibian/.amibian_scripts
+    	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
+	    sudo chmod +rx /usr/bin/raspi-config	
 	   fi
   printf "Sleeping 5 seconds before reloading raspi-config\n" &&
   sleep 5 &&
