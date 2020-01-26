@@ -1188,13 +1188,11 @@ EOF
 ExecStart=
 ExecStart=-/sbin/agetty --autologin $SUDO_USER --noclear %I \$TERM
 EOF
-        sed -i -e 's/run-scummvm.sh/show_menu.sh/g' /home/amibian/.profile
         sed -i -e 's/cli.sh/start-on-boot.sh/g' /etc/rc.local
         sed -i -e 's/run-Kodi.sh/show_menu.sh/g' /home/amibian/.profile
         sed -i -e 's/run-amiberry-dev.sh/run-amiberry-main.sh/g' /home/amibian/.amibian_scripts/run-amiga.sh
 	sed -i -e 's/run-c64.sh/run-amiga.sh/g' /home/amibian/.amibian_scripts/start-on-boot.sh
 	sed -i -e 's/run-fuse.sh/run-amiga.sh/g' /home/amibian/.amibian_scripts/start-on-boot.sh
-	sed -i -e 's/Dev/Master/g' /home/amibian/.amibian_scripts/cli_menu/menu.txt
           whiptail --msgbox "Amibian will now start Amiga emulation with Amiberry emulator (master branch)
 when you turn your system on, or reboot" 20 60 2
         ;;
@@ -1207,7 +1205,6 @@ ExecStart=
 ExecStart=-/sbin/agetty --autologin $SUDO_USER --noclear %I \$TERM
 EOF
         sed -i -e 's/cli.sh/start-on-boot.sh/g' /etc/rc.local
-        sed -i -e 's/run-scummvm.sh/show_menu.sh/g' /home/amibian/.profile
         sed -i -e 's/run-Kodi.sh/show_menu.sh/g' /home/amibian/.profile
         sed -i -e 's/run-amiga.sh/run-c64.sh/g' /home/amibian/.amibian_scripts/start-on-boot.sh
 	sed -i -e 's/run-fuse.sh/run-c64.sh/g' /home/amibian/.amibian_scripts/start-on-boot.sh
@@ -1223,7 +1220,6 @@ ExecStart=
 ExecStart=-/sbin/agetty --autologin $SUDO_USER --noclear %I \$TERM
 EOF
         sed -i -e 's/cli.sh/start-on-boot.sh/g' /etc/rc.local
-        sed -i -e 's/run-scummvm.sh/show_menu.sh/g' /home/amibian/.profile
         sed -i -e 's/run-Kodi.sh/show_menu.sh/g' /home/amibian/.profile
 	sed -i -e 's/run-c64.sh/run-fuse.sh/g' /home/amibian/.amibian_scripts/start-on-boot.sh
 	sed -i -e 's/run-amiga.sh/run-fuse.sh/g' /home/amibian/.amibian_scripts/start-on-boot.sh
@@ -1239,7 +1235,6 @@ ExecStart=
 ExecStart=-/sbin/agetty --autologin $SUDO_USER --noclear %I \$TERM
 EOF
         sed -i -e 's/show_menu.sh/run-Kodi.sh/g' /home/amibian/.profile
-        sed -i -e 's/run-scummvm.sh/run-Kodi.sh/g' /home/amibian/.profile
         sed -i -e 's/start-on-boot.sh/cli.sh/g' /etc/rc.local
         whiptail --msgbox "Amibian will now start kodi when you turn your system on, or reboot" 20 60 2
         ;; 
