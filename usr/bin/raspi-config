@@ -1129,9 +1129,8 @@ do_boot_behaviour() {
       "B4 Amibian Desktop Autologin" "Amibian Desktop GUI, automatically logged in as '$SUDO_USER' user" \
       "B5 Amiberry" "Amiberry Emulator, master branch automatically logged in as '$SUDO_USER' user" \
       "B6 C64" "C64 emulation with Vice Emulator automatically logged in as '$SUDO_USER' user" \
-      "B7 ScummVM" "ScummVM at boot - for point and click games automatically logged in as '$SUDO_USER' user" \
-      "B8 ZX Spectrum" "Zx Spectrum emulation with fuse Emulator automatically logged in as '$SUDO_USER' user" \
-      "B9 Kodi" "Kodi media player automatically logged in as '$SUDO_USER' user" \
+      "B7 ZX Spectrum" "Zx Spectrum emulation with fuse Emulator automatically logged in as '$SUDO_USER' user" \
+      "B8 Kodi" "Kodi media player automatically logged in as '$SUDO_USER' user" \
       3>&1 1>&2 2>&3)
   else
     BOOTOPT=$1
@@ -1223,20 +1222,6 @@ when you turn your system on, or reboot" 20 60 2
 ExecStart=
 ExecStart=-/sbin/agetty --autologin $SUDO_USER --noclear %I \$TERM
 EOF
-        sed -i -e 's/show_menu.sh/run-scummvm.sh/g' /home/amibian/.profile
-        sed -i -e 's/run-Kodi.sh/run-scummvm.sh/g' /home/amibian/.profile
-        sed -i -e 's/start-on-boot.sh/cli.sh/g' /etc/rc.local
-          whiptail --msgbox "Amibian will now start ScummVM (Script Creation Utility for Maniac Mansion Virtual Machine)
-when you turn your system on, or reboot" 20 60 2
-        ;;
-      B8*)
-        systemctl set-default multi-user.target
-        ln -fs /lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
-        cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
-[Service]
-ExecStart=
-ExecStart=-/sbin/agetty --autologin $SUDO_USER --noclear %I \$TERM
-EOF
         sed -i -e 's/cli.sh/start-on-boot.sh/g' /etc/rc.local
         sed -i -e 's/run-scummvm.sh/show_menu.sh/g' /home/amibian/.profile
         sed -i -e 's/run-Kodi.sh/show_menu.sh/g' /home/amibian/.profile
@@ -1245,7 +1230,7 @@ EOF
           whiptail --msgbox "Amibian will now start ZX Spectrum emulation with Fuse emulator 
 when you turn your system on, or reboot" 20 60 2
         ;;
-      B9*)
+      B8*)
         systemctl set-default multi-user.target
         ln -fs /lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
         cat > /etc/systemd/system/getty@tty1.service.d/autologin.conf << EOF
