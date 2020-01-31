@@ -1,5 +1,5 @@
 #!/bin/bash
-#starts Amibian desktop
+#starts Amibian desktop with sudo
 # Copyright © 2020 Amibian.net
 # All rights reserved
 
