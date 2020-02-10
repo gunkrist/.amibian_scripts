@@ -18,11 +18,9 @@ if [ $? -eq 0 ]; then
 	   else
 	    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	    cd ~
-	    sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/bin/
-	    sudo chmod a+x /usr/local/bin
-	    sudo chmod a+rwx /home/amibian/.amibian_scripts
-    	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
-	    sudo chmod +rx /usr/bin/raspi-config	
+	    sudo chmod -R 777 /home/amibian/.amibian_scripts
+            sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/bin/
+    	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin	
 	   fi
   
   else
