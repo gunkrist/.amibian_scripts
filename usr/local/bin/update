@@ -13,6 +13,10 @@ if [ $? -eq 0 ]; then
 	  apt-get -y dist-upgrade &&
 	  apt-get clean &&
 	  apt-get -y autoremove &&
+	  sudo chmod -R 777 /home/amibian/.amibian_scripts &&
+	  sudo chmod -R 777 /home/amibian/Amiga &&
+	  sudo chmod -R 777 /home/amibian/Retro_software &&
+	  sudo chmod -R 777 /home/amibian/Commodore &&
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
