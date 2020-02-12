@@ -32,11 +32,11 @@ if [ $? -eq 0 ]; then
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
-	    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
-	    cd ~
-	    sudo chmod -R 777 /home/amibian/.amibian_scripts
+            sudo chmod -R 777 /home/amibian/.amibian_scripts
             sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/bin/
-    	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin	
+    	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
+            whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	    cd ~	
 	   fi
   
   else
