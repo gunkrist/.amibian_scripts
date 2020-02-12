@@ -3,6 +3,18 @@
 # Copyright © 2020 Amibian.net
 # All rights reserved
 
+export NEWT_COLORS='
+root=,white
+shadow=,white
+listbox=,white
+roottext=black,white
+window=,white
+border=,white
+actlistbox=red,white
+button=white,black
+actsellistbox=white,black
+title=black,white
+'
 wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
