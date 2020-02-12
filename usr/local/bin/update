@@ -19,12 +19,12 @@ wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
 	  cd /home/amibian/.amibian_scripts &&
-	  apt-get clean &&
-	  apt-get -y update &&
-	  apt-get -y upgrade &&
-	  apt-get -y dist-upgrade &&
-	  apt-get clean &&
-	  apt-get -y autoremove &&
+	  sudo apt-get clean &&
+	  sudo apt-get -y update &&
+	  sudo apt-get -y upgrade &&
+	  sudo apt-get -y dist-upgrade &&
+	  sudo apt-get clean &&
+	  sudo apt-get -y autoremove &&
 	  sudo chmod -R 777 /home/amibian/.amibian_scripts &&
 	  sudo chmod -R 777 /home/amibian/Amiga &&
 	  sudo chmod -R 777 /home/amibian/Retro_software &&
