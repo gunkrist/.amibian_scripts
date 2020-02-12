@@ -1635,7 +1635,7 @@ if [ $? -eq 0 ]; then
 	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
 	    sudo chmod -R 777 /home/amibian/.amibian_scripts
-            sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/bin/
+            sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
     	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
 	    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	    cd ~
