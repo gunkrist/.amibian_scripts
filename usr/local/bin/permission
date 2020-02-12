@@ -1,0 +1,25 @@
+#!/bin/bash
+# set permissions on retro files
+# Copyright © 2019 Amibian.net
+# All rights reserved
+    
+sudo chmod -R 777 /home/amibian/.amibian_scripts &&
+sudo chmod -R 777 /home/amibian/Amiga &&
+sudo chmod -R 777 /home/amibian/Retro_software &&
+sudo chmod -R 777 /home/amibian/Commodore &&
+
+export NEWT_COLORS='
+root=,white
+shadow=,white
+listbox=,white
+roottext=black,white
+window=,white
+border=,white
+actlistbox=red,white
+button=white,black
+actsellistbox=white,black
+title=black,white
+'
+whiptail --msgbox " Permissions have been set for all users to
+read, write and execute all files in Amiga folder, Retro_software folder
+and commodore folder. $status" 20 60 1
