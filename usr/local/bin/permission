@@ -11,6 +11,7 @@ sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
 sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
 sudo chmod -R 777 /home/amibian/Retro_software &&
 sudo chmod -R 777 /home/amibian/Commodore &&
+sudo chmod -R 777 /home/amibian/Amiga/conf &&
 
 export NEWT_COLORS='
 root=,white
