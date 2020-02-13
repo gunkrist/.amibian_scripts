@@ -1,0 +1,84 @@
+#!/bin/bash
+#fixes - restores local git repositories
+# Copyright © 2020 Amibian.net
+# All rights reserved
+
+export NEWT_COLORS='
+root=,white
+shadow=,white
+listbox=,white
+roottext=black,white
+window=,white
+border=,white
+actlistbox=red,white
+button=white,black
+actsellistbox=white,black
+title=black,white
+'
+
+if [ "$INTERACTIVE" = True ]; then
+    whiptail --yesno "Would you like reset the local git repositories for Amibian and update the repositories?
+    WARNING if you have made modifications to it, they will be lost" $DEFAULT 20 60 2
+    RET=$?
+  else
+    RET=$1
+  fi
+  if [ $RET -eq 0 ]; then
+    wget -q --spider http://google.com
+
+    if [ $? -eq 0 ]; then
+	      cd /home/amibian/.amibian_scripts &&
+	      apt-get clean &&
+	      apt-get -y autoremove &&
+        git reset --hard
+	      if [[ "$(git pull)" == "Already"* ]]; then
+	        whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
+          cd ~
+	      else
+	        sudo chmod -R 777 /home/amibian/.amibian_scripts
+          sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
+    	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
+	        whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	        cd ~
+	      fi
+     else
+        whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
+    fi
+
+  elif [ $RET -eq 1 ]; then
+    whiptail --msgbox " exit" 20 60 1
+  else
+    return $RET
+  fi
+  
+  if [ "$INTERACTIVE" = True ]; then
+    whiptail --yesno "Would you like reset the local git repositories for Amiberry emulator and update the repositories?
+    WARNING if you have made modifications to it, they will be lost" $DEFAULT 20 60 2
+    RET=$?
+  else
+    RET=$1
+  fi
+  if [ $RET -eq 0 ]; then
+    wget -q --spider http://google.com
+
+    if [ $? -eq 0 ]; then
+	      cd /home/amibian/Amiga/Emulators/amiberry &&
+	      apt-get clean &&
+	      apt-get -y autoremove &&
+        git reset --hard
+	      if [[ "$(git pull)" == "Already"* ]]; then
+	        whiptail --msgbox "source files are up to date. $STATUS" 20 60 1
+          cd ~
+	      else
+	        whiptail --msgbox " source files updated to latest version. $status" 20 60 1
+	        cd ~
+	      fi
+     else
+        whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
+    fi
+
+  elif [ $RET -eq 1 ]; then
+    whiptail --msgbox " exit" 20 60 1
+  else
+    return $RET
+  fi
