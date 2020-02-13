@@ -3,8 +3,12 @@
 # Copyright © 2019 Amibian.net
 # All rights reserved
     
-sudo chmod -R 777 /home/amibian/.amibian_scripts &&
-sudo chmod -R 777 /home/amibian/Amiga &&
+sudo chmod 777 /usr/bin/raspi-config &&
+sudo chmod -R 777 /usr/local/bin &&
+sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
+sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
+sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
+sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
 sudo chmod -R 777 /home/amibian/Retro_software &&
 sudo chmod -R 777 /home/amibian/Commodore &&
 
@@ -21,5 +25,9 @@ actsellistbox=white,black
 title=black,white
 '
 whiptail --msgbox " Permissions have been set for all users to
-read, write and execute all files in Amiga folder, Retro_software folder
-and commodore folder. $status" 20 60 1
+read, write and execute all files in these folders
+/home/amibian/Amiga/kickstarts
+/home/amibian/Amiga/Hard-drives_HDF
+/home/amibian/Amiga/Floppys_ADF
+/home/amibian/Amiga/CDs_ISO
+/home/amibian/Retro_software. $status" 20 60 1
