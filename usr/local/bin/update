@@ -32,6 +32,7 @@ if [ $? -eq 0 ]; then
 	  sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
 	  sudo chmod -R 777 /home/amibian/Retro_software &&
 	  sudo chmod -R 777 /home/amibian/Commodore &&
+	  sudo chmod -R 777 /home/amibian/Amiga/conf &&
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
