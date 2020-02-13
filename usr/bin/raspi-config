@@ -1628,15 +1628,23 @@ if [ $? -eq 0 ]; then
 	  apt-get clean &&
 	  apt-get -y update &&
 	  apt-get -y upgrade &&
-	  apt-get -y dist-upgrade &&
 	  apt-get clean &&
 	  apt-get -y autoremove &&
+	  sudo chmod 777 /usr/bin/raspi-config &&
+	  sudo chmod -R 777 /usr/local/bin &&
+	  sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
+	  sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
+	  sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
+	  sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
+	  sudo chmod -R 777 /home/amibian/Retro_software &&
+	  sudo chmod -R 777 /home/amibian/Commodore && 
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
-	    sudo chmod -R 777 /home/amibian/.amibian_scripts
             sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
     	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
+	    sudo chmod 777 /usr/bin/raspi-config &&
+	    sudo chmod -R 777 /usr/local/bin &&
 	    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	    cd ~
 	   fi
