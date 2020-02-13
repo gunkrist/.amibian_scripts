@@ -20,19 +20,19 @@ title=black,white
 
     if [ $? -eq 0 ]; then
 	      cd /home/amibian/.amibian_scripts &&
-	      apt-get clean &&
-	      apt-get -y autoremove &&
-        git reset --hard
+	       apt-get clean &&
+	        apt-get -y autoremove &&
+                 git reset --hard
 	      if [[ "$(git pull)" == "Already"* ]]; then
 	        whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
-          cd ~
+                 cd ~
 	      else
-	        sudo chmod -R 777 /home/amibian/.amibian_scripts
-          sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
-    	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
-	        whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
-	        cd ~
+	       sudo chmod -R 777 /home/amibian/.amibian_scripts
+                sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
+    	         sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
+	          whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	           cd ~
 	      fi
      else
         whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
-    fi
+     fi
