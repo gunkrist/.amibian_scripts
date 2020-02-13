@@ -31,4 +31,5 @@ read, write and execute all files in these folders
 /home/amibian/Amiga/Hard-drives_HDF
 /home/amibian/Amiga/Floppys_ADF
 /home/amibian/Amiga/CDs_ISO
-/home/amibian/Retro_software. $status" 20 60 1
+/home/amibian/Retro_software
+/home/amibian/Amiga/conf. $status" 20 60 1
