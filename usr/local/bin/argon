@@ -1,0 +1,9 @@
+#!/bin/bash
+#installs argon case shutdown scripts
+# Copyright © 2020 Amibian.net
+# All rights reserved
+
+cd ~
+curl https://download.argon40.com/argon1.sh | bash
+
+sudo rm -f /usr/local/bin/argon
