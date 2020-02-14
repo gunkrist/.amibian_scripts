@@ -24,6 +24,7 @@ if [ $? -eq 0 ]; then
 	  sudo apt-get -y upgrade &&
 	  sudo apt-get clean &&
 	  sudo apt-get -y autoremove &&
+	  sudo chmod -R 777 /home/amibian/.amibian_scripts
 	  sudo chmod 777 /usr/bin/raspi-config &&
 	  sudo chmod -R 777 /usr/local/bin &&
 	  sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
@@ -39,6 +40,7 @@ if [ $? -eq 0 ]; then
             sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/ &&
     	    sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
 	    sudo chmod -R 777 /usr/local/bin &&
+	    sudo chmod -R 777 /home/amibian/.amibian_scripts
 	    sudo chmod 777 /usr/bin/raspi-config &&
             whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	    cd ~	
