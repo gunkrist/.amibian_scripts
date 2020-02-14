@@ -1630,6 +1630,7 @@ if [ $? -eq 0 ]; then
 	  apt-get -y upgrade &&
 	  apt-get clean &&
 	  apt-get -y autoremove &&
+	  sudo chmod -R 777 /home/amibian/.amibian_scripts
 	  sudo chmod 777 /usr/bin/raspi-config &&
 	  sudo chmod -R 777 /usr/local/bin &&
 	  sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
