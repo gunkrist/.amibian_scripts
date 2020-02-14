@@ -31,8 +31,9 @@ title=black,white
     	        sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
 	         sudo chmod -R 777 /usr/local/bin &&
 	          sudo chmod 777 /usr/bin/raspi-config &&
-	           whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
-	            cd ~
+	           sudo chmod -R 777 /home/amibian/.amibian_scripts
+		    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	             cd ~
 	      fi
      else
         whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
