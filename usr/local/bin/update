@@ -51,6 +51,3 @@ if [ $? -eq 0 ]; then
   else
     whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
 fi
-
-  ASK_TO_REBOOT=1
-  
