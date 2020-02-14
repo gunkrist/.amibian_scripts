@@ -12,6 +12,7 @@ sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
 sudo chmod -R 777 /home/amibian/Retro_software &&
 sudo chmod -R 777 /home/amibian/Commodore &&
 sudo chmod -R 777 /home/amibian/Amiga/conf &&
+sudo chmod -R 777 /home/amibian/.amibian_scripts
 
 export NEWT_COLORS='
 root=,white
