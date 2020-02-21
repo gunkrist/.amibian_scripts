@@ -33,12 +33,11 @@ if [ $? -eq 0 ]; then
 	              sudo chmod -R 777 /home/amibian/Retro_software &&
              	       sudo chmod -R 777 /home/amibian/Commodore &&
 	                sudo chmod -R 777 /home/amibian/Amiga/conf &&
+			 git reset --hard
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    sudo chmod -R 777 /home/amibian/.amibian_scripts
 	     whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
-	    git reset --hard
-	     git pull
               sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/ &&
     	       sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
 	        sudo chmod -R 777 /usr/local/bin &&
