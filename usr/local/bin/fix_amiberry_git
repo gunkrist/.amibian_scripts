@@ -20,17 +20,14 @@ wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
 	  cd /home/amibian/Amiga/Emulators/amiberry
-           sudo apt-get clean &&
-	    sudo apt-get -y autoremove &&
-             git reset --hard
-     if [[ "$(git pull)" == "Already"* ]]; then
-      whiptail --msgbox " Source files are up to date. $STATUS" 20 60 1
-       cd ~
-     else
-      make clean
-       make -j2 PLATFORM=rpi4
-        whiptail --msgbox " Emulator updated to latest version. $status" 20 60 1
+            git reset --hard
+	     git pull
+	      make clean
+               make -j2 PLATFORM=rpi4
+                whiptail --msgbox " Emulator repository fixed
+		and updated to latest version. $status" 20 60 1
          cd ~
+	  clear
      fi
 else
  whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
