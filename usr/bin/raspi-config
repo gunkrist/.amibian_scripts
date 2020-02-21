@@ -1588,10 +1588,12 @@ if [ $? -eq 0 ]; then
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    whiptail --msgbox " Source files are up to date. $STATUS" 20 60 1
 	   else
-	    make clean
-	    make -j2 PLATFORM=rpi4
-	    whiptail --msgbox " Emulator updated to latest version. $status" 20 60 1
-	    cd ~
+	    git reset --hard
+	     git pull
+	      make clean
+	       make -j2 PLATFORM=rpi4
+	        whiptail --msgbox " Emulator updated to latest version. $status" 20 60 1
+	         cd ~
 	   fi
 else
     whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
@@ -1608,10 +1610,12 @@ if [ $? -eq 0 ]; then
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    whiptail --msgbox " Source files are up to date. $STATUS" 20 60 1
 	   else
-	    make clean
-	    make -j2 PLATFORM=rpi4
-	    whiptail --msgbox " Emulator updated to latest version. $status" 20 60 1
-	    cd ~
+	    git reset --hard
+	     git pull
+	      make clean
+	       make -j2 PLATFORM=rpi4
+	        whiptail --msgbox " Emulator updated to latest version. $status" 20 60 1
+	         cd ~
 	   fi
 else
     whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
@@ -1629,24 +1633,24 @@ if [ $? -eq 0 ]; then
 	    apt-get -y upgrade &&
 	     apt-get clean &&
 	      apt-get -y autoremove &&
-	       sudo chmod -R 777 /home/amibian/.amibian_scripts
-	        sudo chmod 777 /usr/bin/raspi-config &&
-	         sudo chmod -R 777 /usr/local/bin &&
-	          sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
-	           sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
-	            sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
-	             sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
-	              sudo chmod -R 777 /home/amibian/Retro_software &&
-	               sudo chmod -R 777 /home/amibian/Commodore && 
+	       sudo chmod 777 /usr/bin/raspi-config &&
+	        sudo chmod -R 777 /usr/local/bin &&
+	         sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
+	          sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
+	           sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
+	            sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
+	             sudo chmod -R 777 /home/amibian/Retro_software &&
+                      sudo chmod -R 777 /home/amibian/Commodore &&
+		       git reset --hard
 	   if [[ "$(git pull)" == "Already"* ]]; then
-	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
+	    sudo chmod -R 777 /home/amibian/.amibian_scripts
+	     whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
-            git reset --hard
-	     git pull
 	      sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
     	       sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
 	        sudo chmod 777 /usr/bin/raspi-config &&
 	         sudo chmod -R 777 /usr/local/bin &&
+		  sudo chmod -R 777 /home/amibian/.amibian_scripts
 	          whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	           cd ~
 	   fi
