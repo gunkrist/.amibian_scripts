@@ -27,6 +27,7 @@ title=black,white
 	        sudo chmod -R 777 /home/amibian/.amibian_scripts
 	         whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
                   cd ~
+		   clear
 	      else
 	       sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/ &&
     	        sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
@@ -36,6 +37,6 @@ title=black,white
 		    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	             cd ~
 	      fi
-     else
+    else
         whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
-     fi
+    fi
