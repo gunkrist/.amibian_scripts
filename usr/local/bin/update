@@ -24,18 +24,18 @@ if [ $? -eq 0 ]; then
 	     sudo apt-get -y upgrade &&
 	      sudo apt-get clean &&
 	       sudo apt-get -y autoremove &&
-	        sudo chmod -R 777 /home/amibian/.amibian_scripts
-	         sudo chmod 777 /usr/bin/raspi-config &&
-	          sudo chmod -R 777 /usr/local/bin &&
-	           sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
-	            sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
-	             sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
-	              sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
-	               sudo chmod -R 777 /home/amibian/Retro_software &&
-               	        sudo chmod -R 777 /home/amibian/Commodore &&
-	                 sudo chmod -R 777 /home/amibian/Amiga/conf &&
+	        sudo chmod 777 /usr/bin/raspi-config &&
+	         sudo chmod -R 777 /usr/local/bin &&
+	          sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
+	           sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
+	            sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
+	             sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
+	              sudo chmod -R 777 /home/amibian/Retro_software &&
+             	       sudo chmod -R 777 /home/amibian/Commodore &&
+	                sudo chmod -R 777 /home/amibian/Amiga/conf &&
 	   if [[ "$(git pull)" == "Already"* ]]; then
-	    whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
+	    sudo chmod -R 777 /home/amibian/.amibian_scripts
+	     whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
 	    git reset --hard
 	     git pull
