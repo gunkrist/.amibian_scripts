@@ -5,5 +5,7 @@
 
 cd ~
 curl https://download.argon40.com/argon1.sh | bash
+sudo cp /home/pi/Desktop/argonone-config.desktop /home/amibian/Desktop &&
+sudo cp /home/pi/Desktop/argonone-uninstall.desktop /home/amibian/Desktop &&
 
 sudo rm -f /usr/local/bin/argon
