@@ -24,8 +24,9 @@ title=black,white
 	        sudo apt-get -y autoremove &&
                  git reset --hard
 	      if [[ "$(git pull)" == "Already"* ]]; then
-	        whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
-                 cd ~
+	        sudo chmod -R 777 /home/amibian/.amibian_scripts
+	         whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
+                  cd ~
 	      else
 	       sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/ &&
     	        sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
