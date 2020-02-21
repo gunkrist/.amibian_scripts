@@ -20,8 +20,8 @@ wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
 	  cd /home/amibian/Amiga/Emulators/amiberry
-           apt-get clean &&
-	    apt-get -y autoremove &&
+           sudo apt-get clean &&
+	    sudo apt-get -y autoremove &&
              git reset --hard
      if [[ "$(git pull)" == "Already"* ]]; then
       whiptail --msgbox " Source files are up to date. $STATUS" 20 60 1
