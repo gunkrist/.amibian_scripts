@@ -19,16 +19,15 @@ title=black,white
 wget -q --spider http://google.com
 
     if [ $? -eq 0 ]; then
-	  cd /home/amibian/Amiga/Emulators/amiberry
-            git reset --hard
-	     git pull
-	      make clean
-               make -j2 PLATFORM=rpi4
-                whiptail --msgbox " Emulator repository fixed
-		and updated to latest version. $status" 20 60 1
-         cd ~
-	  clear
-    fi
-     else
+	      cd /home/amibian/Amiga/Emulators/amiberry
+               git reset --hard
+	        git pull
+	         make clean
+                  make -j2 PLATFORM=rpi4
+                   whiptail --msgbox " Emulator repository fixed
+		                       and updated to latest version. $status" 20 60 1
+                    cd ~
+	             clear
+    else
  whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
-     fi
+    fi
