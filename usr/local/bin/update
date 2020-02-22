@@ -33,7 +33,8 @@ if [ $? -eq 0 ]; then
 	              sudo chmod -R 777 /home/amibian/Retro_software &&
              	       sudo chmod -R 777 /home/amibian/Commodore &&
 	                sudo chmod -R 777 /home/amibian/Amiga/conf &&
-			 git reset --hard
+			 sudo sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service
+			  git reset --hard
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    sudo chmod -R 777 /home/amibian/.amibian_scripts
 	     whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
