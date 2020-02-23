@@ -467,14 +467,17 @@ do_configure_keyboard() {
   printf "Reloading keymap. This may take a short while\n"
   if [ "$INTERACTIVE" = True ]; then
     dpkg-reconfigure keyboard-configuration
+    exec setupcon --save
   else
     local KEYMAP="$1"
     sed -i /etc/default/keyboard -e "s/^XKBLAYOUT.*/XKBLAYOUT=\"$KEYMAP\"/"
     dpkg-reconfigure -f noninteractive keyboard-configuration
+    exec setupcon --save
   fi
   invoke-rc.d keyboard-setup start
   setsid sh -c 'exec setupcon -k --force <> /dev/tty1 >&0 2>&1'
   udevadm trigger --subsystem-match=input --action=change
+  exec setupcon --save
   return 0
 }
 
