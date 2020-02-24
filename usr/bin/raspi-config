@@ -2325,6 +2325,228 @@ do_internationalisation_menu() {
   fi
 }
 
+do_edit_config_menu() {
+  FUN=$(whiptail --title "Amibian Configuration Tool" --menu "edit config.txt" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+    "E1 Edit current config" "Edit the config in use" \
+    "E2 Edit config 1" " " \
+    "E3 Edit config 2" " " \
+    "E4 Edit config 3" " " \
+    "E5 Edit config 4" " " \
+    "E6 Edit config 5" " " \
+    "E7 Edit config 1 description" "set your own description to config 1" \
+    "E8 Edit config 2 description" "set your own description to config 2" \
+    "E9 Edit config 3 description" "set your own description to config 3" \
+    "E0 Edit config 4 description" "set your own description to config 4" \
+    "EA Edit config 5 description" "set your own description to config 5" \
+    3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    return 0
+  elif [ $RET -eq 0 ]; then
+    case "$FUN" in
+      E1\ *) do_edit_config ;;
+      E2\ *) do_edit_config1 ;;
+      E3\ *) do_edit_config2 ;;
+      E4\ *) do_edit_config3 ;;
+      E5\ *) do_edit_config4 ;;
+      E6\ *) do_edit_config5 ;;
+      E7\ *) do_edit_description1 ;;
+      E8\ *) do_edit_description2 ;;
+      E9\ *) do_edit_description3 ;;
+      E0\ *) do_edit_description4 ;;
+      EA\ *) do_edit_description5 ;;
+      *) whiptail --msgbox "Guru Meditation: unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
+  fi
+}
+
+do_edit_config() {
+  nano /boot/config.txt
+}
+
+do_edit_config1() {
+  nano /home/amibian/config/config1/config.txt
+}
+
+do_edit_config2() {
+  nano /home/amibian/config/config2/config.txt
+}
+
+do_edit_config3() {
+  nano /home/amibian/config/config3/config.txt
+}
+
+do_edit_config4() {
+  nano /home/amibian/config/config4/config.txt
+}
+
+do_edit_config5() {
+  nano /home/amibian/config/config5/config.txt
+}
+
+do_edit_description1() {
+  if [ "$INTERACTIVE" = True ]; then
+     whiptail --msgbox "set your own description to config 1. keep it short please" 20 60 1
+  fi
+  CURRENT_DESCRIPTION=`cat /home/amibian/config/config1/description.txt | tr -d " \t\n\r"`
+  if [ "$INTERACTIVE" = True ]; then
+    NEW_DESCRIPTION=$(whiptail --inputbox "Please enter a short description" 20 60 "$CURRENT_DESCRIPTION" 3>&1 1>&2 2>&3)
+  else
+    NEW_DESCRIPTION=$1
+    true
+  fi
+  if [ $? -eq 0 ]; then
+    echo $NEW_DESCRIPTION > /home/amibian/config/config1/description.txt
+    sed -i "s/127.0.1.1.*$CURRENT_DESCRIPTION/127.0.1.1\t$NEW_DESCRIPTION/g" /home/amibian/config/config1/description.txt
+  fi
+}
+
+do_edit_description2() {
+  if [ "$INTERACTIVE" = True ]; then
+     whiptail --msgbox "set your own description to config 2. keep it short please" 20 60 1
+  fi
+  CURRENT_DESCRIPTION=`cat /home/amibian/config/config2/description.txt | tr -d " \t\n\r"`
+  if [ "$INTERACTIVE" = True ]; then
+    NEW_DESCRIPTION=$(whiptail --inputbox "Please enter a short description" 20 60 "$CURRENT_DESCRIPTION" 3>&1 1>&2 2>&3)
+  else
+    NEW_DESCRIPTION=$1
+    true
+  fi
+  if [ $? -eq 0 ]; then
+    echo $NEW_DESCRIPTION > /home/amibian/config/config2/description.txt
+    sed -i "s/127.0.1.1.*$CURRENT_DESCRIPTION/127.0.1.1\t$NEW_DESCRIPTION/g" /home/amibian/config/config2/description.txt
+  fi
+}
+
+do_edit_description3() {
+  if [ "$INTERACTIVE" = True ]; then
+     whiptail --msgbox "set your own description to config 3. keep it short please" 20 60 1
+  fi
+  CURRENT_DESCRIPTION=`cat /home/amibian/config/config3/description.txt | tr -d " \t\n\r"`
+  if [ "$INTERACTIVE" = True ]; then
+    NEW_DESCRIPTION=$(whiptail --inputbox "Please enter a short description" 20 60 "$CURRENT_DESCRIPTION" 3>&1 1>&2 2>&3)
+  else
+    NEW_DESCRIPTION=$1
+    true
+  fi
+  if [ $? -eq 0 ]; then
+    echo $NEW_DESCRIPTION > /home/amibian/config/config3/description.txt
+    sed -i "s/127.0.1.1.*$CURRENT_DESCRIPTION/127.0.1.1\t$NEW_DESCRIPTION/g" /home/amibian/config/config3/description.txt
+  fi
+}
+
+do_edit_description4() {
+  if [ "$INTERACTIVE" = True ]; then
+     whiptail --msgbox "set your own description to config 4. keep it short please" 20 60 1
+  fi
+  CURRENT_DESCRIPTION=`cat /home/amibian/config/config4/description.txt | tr -d " \t\n\r"`
+  if [ "$INTERACTIVE" = True ]; then
+    NEW_DESCRIPTION=$(whiptail --inputbox "Please enter a short description" 20 60 "$CURRENT_DESCRIPTION" 3>&1 1>&2 2>&3)
+  else
+    NEW_DESCRIPTION=$1
+    true
+  fi
+  if [ $? -eq 0 ]; then
+    echo $NEW_DESCRIPTION > /home/amibian/config/config4/description.txt
+    sed -i "s/127.0.1.1.*$CURRENT_DESCRIPTION/127.0.1.1\t$NEW_DESCRIPTION/g" /home/amibian/config/config4/description.txt
+  fi
+}
+
+do_edit_description5() {
+  if [ "$INTERACTIVE" = True ]; then
+     whiptail --msgbox "set your own description to config 5. keep it short please" 20 60 1
+  fi
+  CURRENT_DESCRIPTION=`cat /home/amibian/config/config5/description.txt | tr -d " \t\n\r"`
+  if [ "$INTERACTIVE" = True ]; then
+    NEW_DESCRIPTION=$(whiptail --inputbox "Please enter a short description" 20 60 "$CURRENT_DESCRIPTION" 3>&1 1>&2 2>&3)
+  else
+    NEW_DESCRIPTION=$1
+    true
+  fi
+  if [ $? -eq 0 ]; then
+    echo $NEW_DESCRIPTION > /home/amibian/config/config5/description.txt
+    sed -i "s/127.0.1.1.*$CURRENT_DESCRIPTION/127.0.1.1\t$NEW_DESCRIPTION/g" /home/amibian/config/config5/description.txt
+  fi
+}
+
+do_select_config_menu
+  FUN=$(whiptail --title "Amibian Configuration Tool" --menu "Select a config" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+    "S1 Config1" "$(cat /home/amibian/config/config1/description.txt)" \
+    "S2 Config2" "$(cat /home/amibian/config/config2/description.txt)" \
+    "S3 Config3" "$(cat /home/amibian/config/config3/description.txt)" \
+    "S4 Config4" "$(cat /home/amibian/config/config4/description.txt)" \
+    "S5 Config5" "$(cat /home/amibian/config/config5/description.txt)" \
+    "S6 backup config" "$(cat /home/amibian/config/backup-config/description.txt)" \
+    3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    return 0
+  elif [ $RET -eq 0 ]; then
+    case "$FUN" in
+      S1\ *) cp -f /home/amibian/config/config1/config.txt /boot ;;
+      S2\ *) cp -f /home/amibian/config/config2/config.txt /boot ;;
+      S3\ *) cp -f /home/amibian/config/config3/config.txt /boot ;;
+      S4\ *) cp -f /home/amibian/config/config4/config.txt /boot ;;
+      S5\ *) cp -f /home/amibian/config/config5/config.txt /boot ;;
+      S6\ *) cp -f /home/amibian/config/backup-config/config.txt /boot ;;
+      *) whiptail --msgbox "Guru Meditation: unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
+  fi
+}
+
+do_edit_config_menu() {
+  FUN=$(whiptail --title "Amibian Configuration Tool" --menu "edit config.txt" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+    "E1 Edit current config" "Edit the config in use" \
+    "E2 Edit config 1" " " \
+    "E3 Edit config 2" " " \
+    "E4 Edit config 3" " " \
+    "E5 Edit config 4" " " \
+    "E6 Edit config 5" " " \
+    "E7 Edit config 1 description" "set your own description to config 1" \
+    "E8 Edit config 2 description" "set your own description to config 2" \
+    "E9 Edit config 3 description" "set your own description to config 3" \
+    "E0 Edit config 4 description" "set your own description to config 4" \
+    "EA Edit config 5 description" "set your own description to config 5" \
+    3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    return 0
+  elif [ $RET -eq 0 ]; then
+    case "$FUN" in
+      E1\ *) do_edit_config ;;
+      E2\ *) do_edit_config1 ;;
+      E3\ *) do_edit_config2 ;;
+      E4\ *) do_edit_config3 ;;
+      E5\ *) do_edit_config4 ;;
+      E6\ *) do_edit_config5 ;;
+      E7\ *) do_edit_description1 ;;
+      E8\ *) do_edit_description2 ;;
+      E9\ *) do_edit_description3 ;;
+      E0\ *) do_edit_description4 ;;
+      EA\ *) do_edit_description5 ;;
+      *) whiptail --msgbox "Guru Meditation: unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
+  fi
+}
+
+do_config_menu() {
+  FUN=$(whiptail --title "System Settings (amibian-config)" --menu "Update Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+    "C1 select a config " "select what config.txt you want to use" \
+    "C2 edit a config.txt file" "Edit a config with nano editor" \
+    3>&1 1>&2 2>&3)
+  RET=$?
+  if [ $RET -eq 1 ]; then
+    return 0
+  elif [ $RET -eq 0 ]; then
+    case "$FUN" in
+      C1\ *) do_select_config_menu ;;
+      C2\ *) do_edit_config_menu ;;
+      *) whiptail --msgbox "Guru Meditation: unrecognized option" 20 60 1 ;;
+    esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
+  fi
+}
+
+
 do_interface_menu() {
   FUN=$(whiptail --title "Amibian Configuration Tool" --menu "Interfacing Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "P1 Camera" "Enable/Disable connection to the Raspberry Pi Camera" \
@@ -2367,7 +2589,7 @@ do_advanced_menu() {
     "A9 Compositor" "Enable/Disable xcompmgr composition manager" \
     "AA Pi 4 Video Output" "Video output options for Pi 4" \
     "AB Overlay FS" "Enable/Disable read-only file system" \
-    "AC Edit Config.txt" "Edit config.txt with nano text editor" \
+    "AC Config.txt options" "select a config.txt or edit it" \
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -2385,7 +2607,7 @@ do_advanced_menu() {
       A9\ *) do_xcompmgr ;;
       AA\ *) do_pi4video ;;
       AB\ *) do_overlayfs ;;
-      AC\ *) do_config ;;
+      AC\ *) do_config_menu ;;
       *) whiptail --msgbox "Guru Meditation: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   fi
