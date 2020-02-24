@@ -35,7 +35,7 @@ if [ $? -eq 0 ]; then
 	  sudo chmod -R 777 /home/amibian/Retro_software &&
           sudo chmod -R 777 /home/amibian/Commodore &&
 	  sudo chmod -R 777 /home/amibian/Amiga/conf &&
-	  sudo sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service
+	  sudo sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service &&
 	  git reset --hard
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    sudo chmod -R 777 /home/amibian/.amibian_scripts
@@ -45,9 +45,10 @@ if [ $? -eq 0 ]; then
     	       sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
 	        sudo chmod -R 777 /usr/local/bin &&
 	         sudo chmod -R 777 /home/amibian/.amibian_scripts
-	          sudo chmod 777 /usr/bin/raspi-config &&
-                   whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
-	            cd ~	
+		  sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
+	           sudo chmod 777 /usr/bin/raspi-config &&
+                    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	             cd ~	
 	   fi
   
   else
