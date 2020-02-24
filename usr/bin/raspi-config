@@ -1650,7 +1650,7 @@ if [ $? -eq 0 ]; then
 	   sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
 	   sudo chmod -R 777 /home/amibian/Retro_software &&
            sudo chmod -R 777 /home/amibian/Commodore &&
-           sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service
+           sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service &&
            git reset --hard
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    sudo chmod -R 777 /home/amibian/.amibian_scripts
@@ -1661,6 +1661,7 @@ if [ $? -eq 0 ]; then
 	        sudo chmod 777 /usr/bin/raspi-config &&
 	         sudo chmod -R 777 /usr/local/bin &&
 		  sudo chmod -R 777 /home/amibian/.amibian_scripts
+		   sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
 	          whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	           cd ~
 	   fi
@@ -1672,7 +1673,7 @@ if [ $? -eq 0 ]; then
     whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
 fi
 
-  ASK_TO_REBOOT=17
+  ASK_TO_REBOOT=1
 }
 
 do_audio() {
