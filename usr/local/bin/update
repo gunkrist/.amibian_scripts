@@ -19,36 +19,34 @@ wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
 	  cd /home/amibian/.amibian_scripts &&
-	  sudo apt-get clean &&
-	  sudo apt-get -y update &&
-	  sudo apt-get -y upgrade &&
-	  sudo apt-get clean &&
-	  sudo apt-get -y autoremove &&
-	  sudo chmod -R 777 /home/amibian/.amibian_scripts
-          sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
-          sudo chmod 777 /usr/bin/raspi-config &&
-	  sudo chmod -R 777 /usr/local/bin &&
-	  sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
-	  sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
-	  sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
-	  sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
-	  sudo chmod -R 777 /home/amibian/Retro_software &&
-          sudo chmod -R 777 /home/amibian/Commodore &&
-	  sudo chmod -R 777 /home/amibian/Amiga/conf &&
-	  sudo sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service &&
-	  git reset --hard
+	   apt-get -y update &&
+	   apt-get -y upgrade &&
+	   apt-get clean &&
+	   apt-get -y autoremove &&
+	   sudo chmod -R 777 /home/amibian/.amibian_scripts
+           sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
+           sudo chmod 777 /usr/bin/raspi-config &&
+	   sudo chmod -R 777 /usr/local/bin &&
+	   sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
+	   sudo chmod -R 777 /home/amibian/Amiga/Hard-drives_HDF &&
+	   sudo chmod -R 777 /home/amibian/Amiga/Floppys_ADF &&
+	   sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
+	   sudo chmod -R 777 /home/amibian/Retro_software &&
+           sudo chmod -R 777 /home/amibian/Commodore &&
+           sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service &&
+           git reset --hard
 	   if [[ "$(git pull)" == "Already"* ]]; then
 	    sudo chmod -R 777 /home/amibian/.amibian_scripts
 	     whiptail --msgbox " Amibian source files are up to date. $STATUS" 20 60 1
 	   else
-              sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/ &&
-    	       sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
-	        sudo chmod -R 777 /usr/local/bin &&
-	         sudo chmod -R 777 /home/amibian/.amibian_scripts
-		  sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
-	           sudo chmod 777 /usr/bin/raspi-config &&
-                    whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
-	             cd ~	
+	      sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
+    	       sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
+	        sudo chmod 777 /usr/bin/raspi-config &&
+	         sudo chmod -R 777 /usr/local/bin &&
+		  sudo chmod -R 777 /home/amibian/.amibian_scripts
+		   sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
+	            whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	             cd ~
 	   fi
   
   else
