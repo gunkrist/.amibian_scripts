@@ -2469,7 +2469,7 @@ do_edit_description5() {
   fi
 }
 
-do_select_config_menu
+do_select_config_menu() {
   FUN=$(whiptail --title "Amibian Configuration Tool" --menu "Select a config" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "S1 Config1" "$(cat /home/amibian/config/config1/description.txt)" \
     "S2 Config2" "$(cat /home/amibian/config/config2/description.txt)" \
