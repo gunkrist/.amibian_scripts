@@ -2329,7 +2329,7 @@ do_internationalisation_menu() {
 }
 
 do_edit_config_menu() {
-  FUN=$(whiptail --title "Amibian Configuration Tool" --menu "edit config.txt" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+  FUN=$(whiptail --title "Amibian Configuration Tool" --backtitle "$(cat /proc/device-tree/model)" --menu "edit config.txt" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "E1 Edit current config" "Edit the config in use" \
     "E2 Edit config 1" " " \
     "E3 Edit config 2" " " \
@@ -2473,7 +2473,7 @@ do_edit_description5() {
 }
 
 do_select_config_menu() {
-  FUN=$(whiptail --title "Amibian Configuration Tool" --menu "Select a config" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+  FUN=$(whiptail --title "Amibian Configuration Tool" --backtitle "$(cat /proc/device-tree/model)" --menu "Select a config" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "S1 Config1" "$(cat /home/amibian/config/config1/description.txt)" \
     "S2 Config2" "$(cat /home/amibian/config/config2/description.txt)" \
     "S3 Config3" "$(cat /home/amibian/config/config3/description.txt)" \
@@ -2498,7 +2498,7 @@ do_select_config_menu() {
 }
 
 do_edit_config_menu() {
-  FUN=$(whiptail --title "Amibian Configuration Tool" --menu "edit config.txt" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+  FUN=$(whiptail --title "Amibian Configuration Tool" --backtitle "$(cat /proc/device-tree/model)" --menu "edit config.txt" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "E1 Edit current config" "Edit the config in use" \
     "E2 Edit config 1" " " \
     "E3 Edit config 2" " " \
@@ -2579,7 +2579,7 @@ do_interface_menu() {
 }
 
 do_advanced_menu() {
-  FUN=$(whiptail --title "Amibian Configuration Tool" --backtitle "(cat /proc/device-tree/model)" --menu "Advanced Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
+  FUN=$(whiptail --title "Amibian Configuration Tool" --backtitle "$(cat /proc/device-tree/model)" --menu "Advanced Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Back --ok-button Select \
     "A1 Expand Filesystem" "Ensures that all of the SD card storage is available to the OS" \
     "A2 Overscan" "You may need to configure overscan if black bars are present on display" \
     "A3 Memory Split" "Change the amount of memory made available to the GPU" \
@@ -2666,7 +2666,7 @@ if [ "$INTERACTIVE" = True ]; then
   calc_wt_size
   while true; do
     if is_pi ; then
-      FUN=$(whiptail --title "Amibian Configuration Tool" --backtitle "(cat /proc/device-tree/model)" --menu "Setup Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Finish --ok-button Select \
+      FUN=$(whiptail --title "Amibian Configuration Tool" --backtitle "$(cat /proc/device-tree/model)" --menu "Setup Options" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT --cancel-button Finish --ok-button Select \
         "1 Change User Password" "Change password for the current user" \
         "2 Network Options" "Configure network settings" \
         "3 Boot Options" "Configure options for start-up" \
