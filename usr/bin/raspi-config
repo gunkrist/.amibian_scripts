@@ -91,6 +91,13 @@ is_fkms() {
     return 1
   fi
 }
+is_installed() {
+    if [ "$(dpkg -l "$1" 2> /dev/null | tail -n 1 | cut -d ' ' -f 1)" != "ii" ]; then
+      return 1
+    else
+      return 0
+    fi
+}
 
 deb_ver () {
   ver=`cat /etc/debian_version | cut -d . -f 1`
@@ -802,10 +809,10 @@ do_ssh() {
 }
 
 get_vnc() {
-  if systemctl status vncserver-x11-serviced.service  | grep -q inactive; then
-    echo 1
-  else
+  if systemctl status vncserver-x11-serviced.service  | grep -q -w active; then
     echo 0
+  else
+    echo 1
   fi
 }
 
@@ -821,15 +828,18 @@ do_vnc() {
     RET=$1
   fi
   if [ $RET -eq 0 ]; then
-    if [ ! -d /usr/share/doc/realvnc-vnc-server ] ; then
-        apt-get install realvnc-vnc-server
+    if is_installed realvnc-vnc-server || apt-get install realvnc-vnc-server; then
+      systemctl enable vncserver-x11-serviced.service &&
+      systemctl start vncserver-x11-serviced.service &&
+      STATUS=enabled
+    else
+      return 1
     fi
-    systemctl enable vncserver-x11-serviced.service &&
-    systemctl start vncserver-x11-serviced.service &&
-    STATUS=enabled
   elif [ $RET -eq 1 ]; then
-    systemctl disable vncserver-x11-serviced.service &&
-    systemctl stop vncserver-x11-serviced.service &&
+    if is_installed realvnc-vnc-server; then
+        systemctl disable vncserver-x11-serviced.service
+        systemctl stop vncserver-x11-serviced.service
+    fi
     STATUS=disabled
   else
     return $RET
