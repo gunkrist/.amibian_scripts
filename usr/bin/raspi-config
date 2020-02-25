@@ -91,6 +91,7 @@ is_fkms() {
     return 1
   fi
 }
+
 is_installed() {
     if [ "$(dpkg -l "$1" 2> /dev/null | tail -n 1 | cut -d ' ' -f 1)" != "ii" ]; then
       return 1
