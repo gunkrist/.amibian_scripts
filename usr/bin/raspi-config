@@ -1458,17 +1458,22 @@ do_gldriver() {
     whiptail --msgbox "Driver and kernel not present on your system. Please update" 20 60 2
     return 1
   fi
-  if [ $(dpkg -l libgl1-mesa-dri | tail -n 1 | cut -d ' ' -f 1) != "ii" ]; then
-    whiptail --msgbox "libgl1-mesa-dri not found - please install" 20 60 2
+  for package in gldriver-test libgl1-mesa-dri; do
+    if [ "$(dpkg -l "$package" 2> /dev/null | tail -n 1 | cut -d ' ' -f 1)" != "ii" ]; then
+      missing_packages="$package $missing_packages"
+    fi
+  done
+  if [ -n "$missing_packages" ] && ! apt-get install $missing_packages; then
+    whiptail --msgbox "Required packages not found, please install: ${missing_packages}" 20 60 2
     return 1
   fi
   if is_pifour ; then
-  GLOPT=$(whiptail --title "Amibian Configuration Tool" --menu "GL Driver" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT \
+  GLOPT=$(whiptail --title "Raspberry Pi Software Configuration Tool (raspi-config)" --menu "GL Driver" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT \
     "G1 Legacy" "Original non-GL desktop driver" \
     "G2 GL (Fake KMS)" "OpenGL desktop driver with fake KMS" \
     3>&1 1>&2 2>&3)
   else
-  GLOPT=$(whiptail --title "Amibian Configuration Tool" --menu "GL Driver" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT \
+  GLOPT=$(whiptail --title "Raspberry Pi Software Configuration Tool (raspi-config)" --menu "GL Driver" $WT_HEIGHT $WT_WIDTH $WT_MENU_HEIGHT \
     "G1 Legacy" "Original non-GL desktop driver" \
     "G2 GL (Fake KMS)" "OpenGL desktop driver with fake KMS" \
     "G3 GL (Full KMS)" "OpenGL desktop driver with full KMS" \
@@ -1507,7 +1512,7 @@ do_gldriver() {
         STATUS="The full KMS GL driver is enabled."
         ;;
       *)
-        whiptail --msgbox "Guru Meditation: unrecognised boot option" 20 60 2
+        whiptail --msgbox "Programmer error, unrecognised boot option" 20 60 2
         return 1
         ;;
     esac
@@ -2028,6 +2033,11 @@ get_bootro_conf() {
   grep /boot /etc/fstab | grep -q "defaults.*,ro "
 }
 
+is_uname_current() {
+  test -d "/lib/modules/$(uname -r)"
+  return $?
+}
+
 enable_overlayfs() {
   KERN=$(uname -r)
   INITRD=initrd.img-"$KERN"-overlay
@@ -2043,77 +2053,59 @@ enable_overlayfs() {
     BOOTRO=no
   fi
 
-  # check that the modified initramfs is available for the current kernel version
-  if [ ! -e /boot/"$INITRD" ]; then
-    # generate the modified initramfs - check that the overlay file is available
-    if [ ! -e /etc/initramfs-tools/scripts/overlay ]; then
-      cat > /etc/initramfs-tools/scripts/overlay << 'EOF'
+  cat > /etc/initramfs-tools/scripts/overlay << 'EOF'
 # Local filesystem mounting			-*- shell-script -*-
-
 #
 # This script overrides local_mount_root() in /scripts/local
 # and mounts root as a read-only filesystem with a temporary (rw)
 # overlay filesystem.
 #
-
 . /scripts/local
-
 local_mount_root()
 {
 	local_top
 	local_device_setup "${ROOT}" "root file system"
 	ROOT="${DEV}"
-
 	# Get the root filesystem type if not set
 	if [ -z "${ROOTFSTYPE}" ]; then
 		FSTYPE=$(get_fstype "${ROOT}")
 	else
 		FSTYPE=${ROOTFSTYPE}
 	fi
-
 	local_premount
-
 	# CHANGES TO THE ORIGINAL FUNCTION BEGIN HERE
 	# N.B. this code still lacks error checking
-
 	modprobe ${FSTYPE}
 	checkfs ${ROOT} root "${FSTYPE}"
-
 	# Create directories for root and the overlay
 	mkdir /lower /upper
-
 	# Mount read-only root to /lower
 	if [ "${FSTYPE}" != "unknown" ]; then
 		mount -r -t ${FSTYPE} ${ROOTFLAGS} ${ROOT} /lower
 	else
 		mount -r ${ROOTFLAGS} ${ROOT} /lower
 	fi
-
-	modprobe overlay
-
+	modprobe overlay || insmod "/lower/lib/modules/$(uname -r)/kernel/fs/overlayfs/overlay.ko"
 	# Mount a tmpfs for the overlay in /upper
 	mount -t tmpfs tmpfs /upper
 	mkdir /upper/data /upper/work
-
 	# Mount the final overlay-root in $rootmnt
 	mount -t overlay \
 	    -olowerdir=/lower,upperdir=/upper/data,workdir=/upper/work \
 	    overlay ${rootmnt}
 }
 EOF
-    fi
 
-    # add the overlay to the list of modules
-    if ! grep overlay /etc/initramfs-tools/modules > /dev/null; then
-      echo overlay >> /etc/initramfs-tools/modules
-    fi
-
-    # build the new initramfs
-    update-initramfs -c -k "$KERN"
-
-    # rename it so we know it has overlay added
-    mv /boot/initrd.img-"$KERN" /boot/"$INITRD"
+  # add the overlay to the list of modules
+  if ! grep overlay /etc/initramfs-tools/modules > /dev/null; then
+    echo overlay >> /etc/initramfs-tools/modules
   fi
+
+  # build the new initramfs
+  update-initramfs -c -k "$KERN"
+
+  # rename it so we know it has overlay added
+  mv /boot/initrd.img-"$KERN" /boot/"$INITRD"
 
   # there is now a modified initramfs ready for use...
 
@@ -2134,6 +2126,7 @@ EOF
 }
 
 disable_overlayfs() {
+  KERN=$(uname -r)
   # mount the boot partition as writable if it isn't already
   if get_bootro_now ; then
     if ! mount -o remount,rw /boot 2>/dev/null ; then
@@ -2147,6 +2140,7 @@ disable_overlayfs() {
 
   # modify config.txt
   sed -i /boot/config.txt -e "/initramfs.*/d"
+  update-initramfs -d -k "${KERN}-overlay"
 
   # modify command line
   sed -i /boot/cmdline.txt -e "s/\(.*\)boot=overlay \(.*\)/\1\2/"
@@ -2174,14 +2168,16 @@ disable_bootro() {
   sed -i /etc/fstab -e "s/\(.*\/boot.*\)defaults,ro\(.*\)/\1defaults\2/"
 }
 
-do_config() {
-  sudo nano /boot/config.txt
-}
-
 do_overlayfs() {
   DEFAULT=--defaultno
   CURRENT=0
   STATUS="disabled"
+
+  if [ "$INTERACTIVE" = True ] && ! is_uname_current; then
+    whiptail --msgbox "Could not find modules for the running kernel ($(uname -r))." 20 60 1
+    return 1
+  fi
+
   if get_overlay_conf; then
     DEFAULT=
     CURRENT=1
@@ -2259,6 +2255,68 @@ do_overlayfs() {
     if [ "$INTERACTIVE" = True ]; then
       whiptail --msgbox "The boot partition is $STATUS." 20 60 1
     fi
+  fi
+}
+
+get_proxy() {
+  SCHEME="$1"
+  VAR_NAME="${SCHEME}_proxy"
+  if [ -f /etc/profile.d/proxy.sh ]; then
+    # shellcheck disable=SC1091
+    . /etc/profile.d/proxy.sh
+  fi
+  eval "echo \$$VAR_NAME"
+}
+
+do_proxy() {
+  SCHEMES="$1"
+  ADDRESS="$2"
+  if [ "$SCHEMES" = "all" ]; then
+    CURRENT="$(get_proxy http)"
+    SCHEMES="http https ftp rsync"
+  else
+    CURRENT="$(get_proxy "$SCHEMES")"
+  fi
+  if [ "$INTERACTIVE" = True ]; then
+    if [ "$SCHEMES" = "no" ]; then
+      STRING="Please enter a comma separated list of addresses that should be excluded from using proxy servers.\\nEg: localhost,127.0.0.1,localaddress,.localdomain.com"
+    else
+      STRING="Please enter proxy address.\\nEg: http://user:pass@proxy:8080"
+    fi
+    if ! ADDRESS="$(whiptail --inputbox "$STRING"  20 60 "$CURRENT" 3>&1 1>&2 2>&3)"; then
+      return 0
+    fi
+  fi
+  for SCHEME in $SCHEMES; do
+    unset "${SCHEME}_proxy"
+    CURRENT="$(get_proxy "$SCHEME")"
+    if [ "$CURRENT" != "$ADDRESS" ]; then
+      ASK_TO_REBOOT=1
+    fi
+    if [ -f /etc/profile.d/proxy.sh ]; then
+      sed -i "/^export ${SCHEME}_/Id" /etc/profile.d/proxy.sh
+    fi
+    if [ "${SCHEME#*http}" != "$SCHEME" ]; then
+      if [ -f /etc/apt/apt.conf.d/01proxy ]; then
+        sed -i "/::${SCHEME}::Proxy/d" /etc/apt/apt.conf.d/01proxy
+      fi
+    fi
+    if [ -z "$ADDRESS" ]; then
+      STATUS=cleared
+      continue
+    fi
+    STATUS=updated
+    SCHEME_UPPER="$(echo "$SCHEME" | tr '[:lower:]' '[:upper:]')"
+    echo "export ${SCHEME_UPPER}_PROXY=\"$ADDRESS\"" >> /etc/profile.d/proxy.sh
+    if [ "$SCHEME" != "rsync" ]; then
+      echo "export ${SCHEME}_proxy=\"$ADDRESS\"" >> /etc/profile.d/proxy.sh
+    fi
+    if [ "${SCHEME#*http}" != "$SCHEME" ]; then
+      echo "Acquire::$SCHEME::Proxy \"$ADDRESS\";"  >> /etc/apt/apt.conf.d/01proxy
+    fi
+  done
+  if [ "$INTERACTIVE" = True ]; then
+    whiptail --msgbox "Proxy settings $STATUS" 20 60 1
   fi
 }
 
