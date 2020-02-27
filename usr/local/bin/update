@@ -25,7 +25,9 @@ if [ $? -eq 0 ]; then
 	   apt-get -y autoremove &&
 	   sudo cp -R -n /home/amibian/.amibian_scripts/usr/share/consolefonts/ /usr/share/consolefonts/ &&
 	   sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/ &&
+	   sudo cp /home/amibian/.amibian_scripts/home/.profile /home/amibian &&
 	   sudo chmod -R 777 /home/amibian/.amibian_scripts &&
+	   sudo chmod 777 /home/amibian/.profile &&
            sudo chmod 777 /usr/bin/raspi-config &&
 	   sudo chmod -R 777 /usr/local/bin &&
 	   sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
