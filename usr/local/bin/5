@@ -4,7 +4,7 @@
 # All rights reserved
 
 # start program
-sudo mc
+sudo mc -a
 
 # change to home directory
 cd ~
