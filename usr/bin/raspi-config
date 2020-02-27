@@ -1657,8 +1657,9 @@ if [ $? -eq 0 ]; then
 	   apt-get -y upgrade &&
 	   apt-get clean &&
 	   apt-get -y autoremove &&
-	   sudo chmod -R 777 /home/amibian/.amibian_scripts
-           sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
+	   sudo cp -R -n /home/amibian/.amibian_scripts/usr/share/consolefonts/ /usr/share/consolefonts/ &&
+	   sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/ &&
+	   sudo chmod -R 777 /home/amibian/.amibian_scripts &&
            sudo chmod 777 /usr/bin/raspi-config &&
 	   sudo chmod -R 777 /usr/local/bin &&
 	   sudo chmod -R 777 /home/amibian/Amiga/kickstarts &&
@@ -1675,12 +1676,13 @@ if [ $? -eq 0 ]; then
 	   else
 	      sudo cp -r /home/amibian/.amibian_scripts/usr/local/bin/ /usr/local/
     	       sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
-	        sudo chmod 777 /usr/bin/raspi-config &&
-	         sudo chmod -R 777 /usr/local/bin &&
-		  sudo chmod -R 777 /home/amibian/.amibian_scripts
-		   sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
-	            whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
-	             cd ~
+
+	          sudo chmod 777 /usr/bin/raspi-config &&
+	           sudo chmod -R 777 /usr/local/bin &&
+		    sudo chmod -R 777 /home/amibian/.amibian_scripts
+		     sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/
+	              whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	               cd ~
 	   fi
   printf "Sleeping 5 seconds before reloading raspi-config\n" &&
   sleep 5 &&
