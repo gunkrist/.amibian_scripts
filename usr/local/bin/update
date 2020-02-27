@@ -19,10 +19,10 @@ wget -q --spider http://google.com
 
 if [ $? -eq 0 ]; then
 	  cd /home/amibian/.amibian_scripts &&
-	   apt-get -y update &&
-	   apt-get -y upgrade &&
-	   apt-get clean &&
-	   apt-get -y autoremove &&
+	   sudo apt-get -y update &&
+	   sudo apt-get -y upgrade &&
+	   sudo apt-get clean &&
+	   sudo apt-get -y autoremove &&
 	   sudo cp -R -n /home/amibian/.amibian_scripts/usr/share/consolefonts/ /usr/share/consolefonts/ &&
 	   sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/ &&
 	   sudo cp /home/amibian/.amibian_scripts/home/.profile /home/amibian &&
@@ -52,10 +52,6 @@ if [ $? -eq 0 ]; then
 	              whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
 	               cd ~
 	   fi
-  printf "Sleeping 5 seconds before reloading raspi-config\n" &&
-  sleep 5 &&
-  exec raspi-config
-  
   else
     whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
 fi
