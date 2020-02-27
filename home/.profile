@@ -16,7 +16,10 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+setfont Topazc.psf.gz
+setterm -background blue -foreground white --bold on --store
 setterm -cursor on
+clear
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
