@@ -2467,6 +2467,11 @@ do_edit_config_menu() {
     "E9 Edit config 3 description" "set your own description to config 3" \
     "E0 Edit config 4 description" "set your own description to config 4" \
     "EA Edit config 5 description" "set your own description to config 5" \
+    "EB Save current config as config 1" "saves the currently selected config as config 1" \
+    "EC Save current config as config 2" "saves the currently selected config as config 2" \
+    "ED Save current config as config 3" "saves the currently selected config as config 3" \
+    "EE Save current config as config 4" "saves the currently selected config as config 4" \
+    "EF Save current config as config 5" "saves the currently selected config as config 5" \   
     3>&1 1>&2 2>&3)
   RET=$?
   if [ $RET -eq 1 ]; then
@@ -2484,6 +2489,11 @@ do_edit_config_menu() {
       E9\ *) do_edit_description3 ;;
       E0\ *) do_edit_description4 ;;
       EA\ *) do_edit_description5 ;;
+      EB\ *) do_save_conf1 ;;
+      EC\ *) do_save_conf2 ;;
+      ED\ *) do_save_conf3 ;;
+      EE\ *) do_save_conf4 ;;
+      EF\ *) do_save_conf5 ;;
       *) whiptail --msgbox "Guru Meditation: unrecognized option" 20 60 1 ;;
     esac || whiptail --msgbox "There was an error running option $FUN" 20 60 1
   fi
@@ -2596,6 +2606,26 @@ do_edit_description5() {
     echo $NEW_DESCRIPTION > /home/amibian/config/config5/description.txt
     sed -i "s/127.0.1.1.*$CURRENT_DESCRIPTION/127.0.1.1\t$NEW_DESCRIPTION/g" /home/amibian/config/config5/description.txt
   fi
+}
+
+do_save_conf1 () {
+  sudo cp -f /boot/config.txt /home/amibian/config/config1/
+}
+
+do_save_conf2 () {
+  sudo cp -f /boot/config.txt /home/amibian/config/config2/
+}
+
+do_save_conf3 () {
+  sudo cp -f /boot/config.txt /home/amibian/config/config3/
+}
+
+do_save_conf4 () {
+  sudo cp -f /boot/config.txt /home/amibian/config/config4/
+}
+
+do_save_conf5 () {
+  sudo cp -f /boot/config.txt /home/amibian/config/config5/
 }
 
 do_select_config_menu() {
