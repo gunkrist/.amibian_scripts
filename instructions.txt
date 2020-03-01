@@ -127,5 +127,31 @@
      'show GUI on startup' now whenever the emulator starts 
      on boot your workbench will load. 
     
-
+  5. Shortcut commands for cli
+    	
+    1 =  Amiga - the selected Amiga emulator is Amiberry Master
+    2 =  Amibian Desktop
+    3 =  C64
+    4 =  Zx Spectrum
+    5 =  File manager (Midnight Commander)
+    6 =  System Settings
+    7 =  Help
+    8 =  REBOOT
+    9 =  SHUTDOWN SAFELY
+    0 =  SHUTDOWN SAFELY
+    amiga = starts amiberry emulator
+    amibian-config  = starts our system setting / raspi-config
+    amiberry-dev  = starts to dev branch of amiberry emulator
+    argon  = installs scripts for the argon one pi case
+    fix_amiberry_git  = fixes/restones the local git repository
+    fix_amibian_git  = fixes/restones the local git repository
+    menn = bringu up te cli menu
+    permission = changes te permission of files to rxv
+    root = starts desktop with root privileges
+    settings = starts our system setting / raspi-config
+    temp = displays CPU temperature
+    update = updates to linux and ambiance from github
+    volume = controls your volume output. 
+    
 press 'Q' to exit
+
