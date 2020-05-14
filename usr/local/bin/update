@@ -26,7 +26,7 @@ if [ $? -eq 0 ]; then
 	   sudo cp -R -n /home/amibian/.amibian_scripts/usr/share/consolefonts/ /usr/share/consolefonts/ &&
 	   sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/ &&
 	   sudo cp /home/amibian/.amibian_scripts/home/.profile /home/amibian &&
-	   sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin
+	   sudo cp /home/amibian/.amibian_scripts/usr/bin/raspi-config /usr/bin &&
 	   sudo chmod -R 777 /home/amibian/.amibian_scripts &&
 	   sudo chmod 777 /home/amibian/.profile &&
            sudo chmod 777 /usr/bin/raspi-config &&
