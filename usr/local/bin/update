@@ -37,6 +37,7 @@ if [ $? -eq 0 ]; then
 	   sudo chmod -R 777 /home/amibian/Amiga/CDs_ISO &&
 	   sudo chmod -R 777 /home/amibian/Retro_software &&
            sudo chmod -R 777 /home/amibian/Commodore &&
+	   sudo chmod -R 777 /home/amibian/Amiga/Emulators/amiberry/
            sudo sed -i -e 's/PrivateMounts=yes/PrivateMounts=no/g' /lib/systemd/system/systemd-udevd.service &&
            git reset --hard &&
 	   if [[ "$(git pull)" == "Already"* ]]; then
@@ -49,8 +50,9 @@ if [ $? -eq 0 ]; then
 	          sudo chmod -R 777 /usr/local/bin &&
 		   sudo chmod -R 777 /home/amibian/.amibian_scripts &&
 		    sudo cp -R -n /home/amibian/.amibian_scripts/home/config/ /home/amibian/ &&
-	             whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
-	              cd ~
+		     sudo chmod -R 777 /home/amibian/Amiga/Emulators/amiberry/ &&
+	              whiptail --msgbox " Amibian updated to latest version. $status" 20 60 1
+	               cd ~
 	   fi
   else
     whiptail --msgbox " Not connected to Internet. Please check your connection and try again." 20 60 1
