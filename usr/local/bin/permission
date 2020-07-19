@@ -13,7 +13,7 @@ sudo chmod -R 777 /home/amibian/Retro_software &&
 sudo chmod -R 777 /home/amibian/Commodore &&
 sudo chmod -R 777 /home/amibian/Amiga/conf &&
 sudo chmod -R 777 /home/amibian/.amibian_scripts &&
-sudo chmod -R 777 /home/amibian/Amiga/Emulators/amiberry/conf
+sudo chmod -R 777 /home/amibian/Amiga/Emulators/amiberry/
 
 export NEWT_COLORS='
 root=,white
