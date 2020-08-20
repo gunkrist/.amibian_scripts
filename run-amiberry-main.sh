@@ -10,7 +10,7 @@ clear
 cd /home/amibian/Amiga/Emulators/amiberry
 
 # start program
-./amiberry -f /home/amibian/Amiga/Emulators/amiberry/conf/autostart.uae
+sudo ./amiberry -f /home/amibian/Amiga/Emulators/amiberry/conf/autostart.uae
 
 # change to home directory
 cd ~
