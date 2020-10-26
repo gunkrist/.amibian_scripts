@@ -1,0 +1,41 @@
+#!/bin/bash
+# Removes Sdl2, download Sdl2 source then recompiles it
+# Copyright © 2020 Amibian.net
+# All rights reserved
+
+sudo apt-get remove -y --force-yes libsdl2-dev &&
+sudo apt-get remove -y --force-yes libsdl2* &&
+sudo apt-get remove -y libsdl2-dev --force-yes && 
+sudo apt-get remove -y libsdl2* --force-yes &&
+sudo apt-get remove -y libsdl2* --purge &&
+sudo apt-get remove -y libsdl2-dev --purge &&
+sudo apt-get autoremove -y &&
+sudo apt-get update &&
+sudo apt-get upgrade &&
+wget https://libsdl.org/release/SDL2-2.0.12.tar.gz https://libsdl.org/projects/SDL_image/release/SDL2_image-2.0.5.tar.gz https://libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.15.tar.gz wget http://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-2.0.4.tar.gz &&
+tar zxvf SDL2_ttf-2.0.15.tar.gz &&
+tar zxvf SDL2_image-2.0.5.tar.gz &&
+tar zxvf SDL2-2.0.12.tar.gz &&
+tar zxvf SDL2_mixer-2.0.4.tar.gz &&
+cd ~ &&
+cd SDL2-2.0.12 &&
+./configure --enable-video-kmsdrm --disable-video-rpi &&
+make -j4 &&
+sudo make install &&
+cd ~ &&
+cd SDL2_image-2.0.5 &&
+./configure && make -j4 &&
+sudo make install &&
+cd ~ &&
+cd SDL2_ttf-2.0.15 &&
+./configure && make -j4 &&
+sudo make install &&
+cd ~ &&
+cd SDL2_mixer-2.0.4 &&
+./configure && make -j4 &&
+make &&
+sudo make install &&
+sudo ldconfig -v &&
+cd ~ &&
+rm SDL2-2.0.12.tar.gz SDL2_image-2.0.5.tar.gz SDL2_ttf-2.0.15.tar.gz SDL2_mixer-2.0.4.tar.gz
+ 
